@@ -1,0 +1,146 @@
+body {
+    background-color: #ffe6c2;
+}
+
+.topbar {
+    position: absolute !important;
+    margin: -10px -10px !important;
+    width: 101% !important;
+    height: 101px !important;
+    background-color: #fff !important;
+    transition: background-color ease-in-out 100ms;
+    transition: height smooth 100ms;
+}
+
+.topbar:hover {
+    background-color: #e5e5e5 !important;
+    height: 109px !important;
+}
+
+.wikisearcher {
+    position: absolute !important;
+    border-radius: 15px !important;
+    margin: 15px 75% !important;
+    width: 400px !important;
+    height: 35px !important;
+    background-color: rgb(255, 194, 80) !important;
+    box-shadow: 0px 0px 25px !important;
+    transition: background-color cubic-bezier(0.215, 0.610, 0.355, 1) 250ms;
+}
+
+.wikisearcher:hover {
+    background-color: rgb(156, 118, 47) !important;
+}
+
+.wikisearcher-textinput {
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    width: 380px !important;
+    height: 20px !important;
+    margin: 5px 5px !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    display: ruby-text !important;
+}
+
+.home-div {
+    background-color: rgb(255, 210, 127) !important;
+    width: 700px !important;
+    height: 800px !important;
+    margin: 109px 500px !important;
+    position: absolute !important;
+    border-color: rgb(146, 99, 0) !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-radius: 0px !important;
+    transition: border-width cubic-bezier(0.785, 0.135, 0.15, 0.86) 150ms;
+    transition: box-shadow cubic-bezier(0.785, 0.135, 0.15, 0.86) 150ms;
+}
+
+.home-div:hover {
+    box-shadow: 0px 0px 25px !important;
+}
+
+.header-label {
+    font-family: 'Courier New' !important;
+    margin: 0px 20px !important;
+    font-size: 300% !important;
+    text-shadow: 0px 0px 15px !important;
+}
+
+.wikis {
+    width: 650px !important;
+    height: 750px !important;
+    margin: 25px 25px !important;
+    background-color: white !important;
+    display: table !important;
+}
+
+.page-preview {
+    background-color: rgb(255, 255, 255) !important;
+    width: 500px !important;
+    height: 800px !important;
+    margin: 109px 0px !important;
+    position: absolute !important;
+    border-color: rgb(146, 99, 0) !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-radius: 0px !important;
+    font-family: 'Courier New' !important;
+}
+
+div {
+    border-radius: 10px !important;
+    box-shadow: 0px 0px 0px rgb(0, 0, 0) !important;
+    transition: box-shadow cubic-bezier(0.47, 0, 0.745, 0.715) 100ms;
+}
+
+div:hover {
+    box-shadow: 0px 0px 10px black !important;
+}
+
+.new-post-text {
+    background-color: rgb(255, 255, 255) !important;
+    width: 500px !important;
+    height: 800px !important;
+    margin: 109px 1200px !important;
+    position: absolute !important;
+    border-color: rgb(146, 99, 0) !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-radius: 0px !important;
+}
+
+textarea {
+    border-radius: 5px !important;
+    font-family: 'Courier New' !important;
+    box-shadow: 0px 0px 5px black !important;
+    background-color: white;
+    transition: background-color cubic-bezier(0.645, 0.045, 0.355, 1) 300ms;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgb(185, 185, 185);
+    scrollbar-base-color: transparent;
+    scrollbar-highlight-color: transparent;
+    scrollbar-face-color: #ffffff00;
+}
+
+textarea:hover {
+    background-color: rgb(186, 186, 186) !important;
+}
+
+button {
+    background-color: white !important;
+    border: transparent !important;
+    border-radius: 10px !important;
+    box-shadow: 0px 0px 5px !important;
+    transition: background-color cubic-bezier(0.25, 0.46, 0.45, 0.94) 300ms;
+}
+
+button:hover {
+    background-color: rgb(186, 186, 186) !important;
+}
+
+a {
+    font-family: monospace !important;
+    color: rgb(255, 213, 129) !important;
+}
