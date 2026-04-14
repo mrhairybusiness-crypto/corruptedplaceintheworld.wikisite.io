@@ -3,7 +3,7 @@ setTimeout(async () => {
           wikis = document.getElementById("wikis");
     
     // Using your Read-Only Access Key now!
-    const res = await fetch('https://jsonbin.io', {
+    const res = await fetch('https://api.jsonbin.io/v3/b/69dcdcd036566621a8aa9593', {
         headers: {
             'X-Access-Key': '$2a$10$5GcbTFLB7Du1O4i9OvPAAeC8ff6Iyod7yvFQCUfdKh4h4QQflulfy',
             'X-Bin-Meta': 'false' // This makes the data easier to read
