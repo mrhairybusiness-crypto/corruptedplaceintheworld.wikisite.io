@@ -34,6 +34,12 @@ setTimeout(async () => {
                     i.src = m[2]; 
                     i.style.width = "100%";
                     pg.appendChild(i);
+                } else {
+                    if (m[1] === "header") {
+                        let i = document.createElement("h1")
+                        i.innerHTML = m[2]
+                        pg.appendChild(i)
+                    }
                 }
                 last = reg.lastIndex;
             }
@@ -42,3 +48,4 @@ setTimeout(async () => {
         };
     }
 }, 500);
+
