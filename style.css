@@ -79,7 +79,7 @@ body {
 .page-preview {
     background-color: rgb(255, 255, 255) !important;
     width: 500px !important;
-    height: 800px !important;
+    height: fit-content !important;
     margin: 109px 0px !important;
     position: absolute !important;
     border-color: rgb(146, 99, 0) !important;
