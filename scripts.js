@@ -20,37 +20,33 @@ setTimeout(async () => {
         
         b.onclick = () => {
             pg.style.visibility = "visible";
-            pg.innerHTML = ""; // Clear the old page
-            
+            pg.textContent = ""; // Use textContent to clear
+        
             let raw = String(table[k]).split(",")[1] || "";
             let reg = /\(\(\((.+?)\s(.+?)\)\)\)/g, last = 0, m;
-            
+        
             while ((m = reg.exec(raw)) !== null) {
-                // Add the text before the image
                 pg.append(raw.substring(last, m.index));
-                
-                if (m[1] === "image") {
-                    let i = document.createElement("img"); 
-                    i.src = m[2]; 
-                    i.style.width = "100%";
-                    pg.appendChild(i);
-                } else {
-                    if (m[1] === "header") {
-                        let i = document.createElement("h1")
-                        i.innerHTML = m[2]
-                        pg.appendChild(i)
-                    } else {
-                        if (m[1] === "bold") {
-                            let i = document.createElement("label")
-                            i.innerHTML = m[2]
-                            pg.appendChild[i]
-                        }
-                    }
+        
+                const [_, type, value] = m;
+                let el;
+        
+                if (type === "image") {
+                    el = document.createElement("img");
+                    el.src = value;
+                    el.style.width = "100%";
+                } else if (type === "header") {
+                    el = document.createElement("h1");
+                    el.textContent = value;
+                } else if (type === "bold") {
+                    el = document.createElement("strong"); // Better than label for bold text
+                    el.textContent = value;
                 }
+        
+                if (el) pg.appendChild(el);
                 last = reg.lastIndex;
             }
-            // Add any remaining text after the last image
             pg.append(raw.substring(last));
-        };
+        };        
     }
 }, 500);
