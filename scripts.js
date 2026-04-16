@@ -20,33 +20,44 @@ setTimeout(async () => {
         
         b.onclick = () => {
             pg.style.visibility = "visible";
-            pg.textContent = ""; // Use textContent to clear
-        
+            pg.textContent = ""; 
+            
+            // Grabs the content from your table array
             let raw = String(table[k]).split(",")[1] || "";
-            let reg = /\(\(\((.+?)\s(.+?)\)\)\)/g, last = 0, m;
-        
+            
+            // Updated Regex to match ((type value))
+            let reg = /\(\((image|header|bold)\s(.+?)\)\)/g;
+            let last = 0, m;
+            
             while ((m = reg.exec(raw)) !== null) {
+                // 1. Append plain text found before the tag
                 pg.append(raw.substring(last, m.index));
-        
-                const [_, type, value] = m;
+                
+                const type = m[1];
+                const value = m[2];
                 let el;
         
+                // 2. Handle the specific tag types
                 if (type === "image") {
                     el = document.createElement("img");
                     el.src = value;
                     el.style.width = "100%";
+                    el.style.display = "block";
                 } else if (type === "header") {
                     el = document.createElement("h1");
                     el.textContent = value;
                 } else if (type === "bold") {
-                    el = document.createElement("strong"); // Better than label for bold text
+                    el = document.createElement("strong");
                     el.textContent = value;
                 }
         
                 if (el) pg.appendChild(el);
                 last = reg.lastIndex;
             }
+            
+            // 3. Append any remaining text after the last tag
             pg.append(raw.substring(last));
-        };        
+        };             
     }
 }, 500);
+
