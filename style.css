@@ -77,17 +77,24 @@ body {
 }
 
 .page-preview {
-    background-color: rgb(255, 255, 255) !important;
-    width: 500px !important;
-    height: fit-content !important;
-    margin: 109px 0px !important;
-    position: absolute !important;
-    border-color: rgb(146, 99, 0) !important;
-    border-style: solid !important;
-    border-width: 1px !important;
-    border-radius: 0px !important;
-    font-family: 'Courier New' !important;
+    /* Layout */
+    position: absolute;
+    width: 500px;
+    height: auto; /* 'fit-content' can be buggy in older browsers, auto is safer */
+    margin: 109px 0;
+    
+    /* Aesthetics */
+    background-color: #ffffff;
+    border: 1px solid rgb(146, 99, 0);
+    border-radius: 0;
+    
+    /* Typography */
+    font-family: 'Courier New', Courier, monospace;
+    
+    /* Safety */
+    box-sizing: border-box; /* Prevents border from adding to the 500px width */
 }
+
 
 div {
     border-radius: 10px !important;
