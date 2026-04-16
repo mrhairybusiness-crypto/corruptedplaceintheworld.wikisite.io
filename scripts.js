@@ -20,25 +20,22 @@ setTimeout(async () => {
         
         b.onclick = () => {
             pg.style.visibility = "visible";
-            pg.innerHTML = ""; // Clear existing content
-        
-            // 1. Get the raw text safely
+            pg.innerHTML = ""; // Clear the page
+            
+            // 1. Get the data. This assumes "ID,Content" format.
             let fullContent = String(table[k]);
             let raw = fullContent.includes(",") ? fullContent.split(",")[1] : fullContent;
             
-            console.log("Processing text:", raw); // DEBUG: Check this in F12 console
-        
-            // 2. Updated Regex for ((type value))
-            // Matches ((image url)), ((header text)), or ((bold text))
+            // 2. Regex for ((type value)) - Global flag /g allows multiple matches
             let reg = /\(\((image|header|bold)\s(.+?)\)\)/g;
             let last = 0, m;
-        
+            
             while ((m = reg.exec(raw)) !== null) {
-                // Append text found BEFORE the tag
+                // Append any plain text found BEFORE the current tag
                 pg.append(raw.substring(last, m.index));
-        
-                const type = m[1];  // image, header, or bold
-                const value = m[2]; // The content inside
+                
+                let type = m[1];  // image, header, or bold
+                let value = m[2]; // The content/URL
                 let el;
         
                 if (type === "image") {
@@ -46,6 +43,7 @@ setTimeout(async () => {
                     el.src = value.trim();
                     el.style.width = "100%";
                     el.style.display = "block";
+                    el.style.marginBottom = "10px";
                 } else if (type === "header") {
                     el = document.createElement("h1");
                     el.textContent = value;
@@ -55,11 +53,13 @@ setTimeout(async () => {
                 }
         
                 if (el) pg.appendChild(el);
+                
+                // Move the pointer forward
                 last = reg.lastIndex;
             }
             
-            // 3. Append any text found AFTER the last tag
+            // 3. Append any remaining text after the last tag
             pg.append(raw.substring(last));
-        };                   
+        };                      
     }
 }, 500);
