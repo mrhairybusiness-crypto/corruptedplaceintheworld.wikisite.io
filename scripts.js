@@ -20,27 +20,21 @@ setTimeout(async () => {
         
         b.onclick = () => {
             pg.style.visibility = "visible";
-            pg.innerHTML = ""; // Clear the page
+            pg.innerHTML = ""; 
             
-            // --- FIX FOR CUT OFF ---
-            pg.style.height = "auto";       // Let it grow as long as the text
-            pg.style.overflow = "visible";  // Ensure nothing is hidden
-            // ------------------------
-
-            // 1. Get the data. This assumes "ID,Content" format.
             let fullContent = String(table[k]);
             let raw = fullContent.includes(",") ? fullContent.split(",")[1] : fullContent;
             
-            // 2. Regex for ((type value)) - Global flag /g allows multiple matches
-            let reg = /\(\((image|header|bold)\s(.+?)\)\)/g;
+            // The [^]+? allows the regex to match across MULTIPLE LINES (newlines)
+            let reg = /\(\((image|header|bold)\s([^]+?)\)\)/g;
             let last = 0, m;
             
             while ((m = reg.exec(raw)) !== null) {
-                // Append any plain text found BEFORE the current tag
+                // Add text before the tag
                 pg.append(raw.substring(last, m.index));
                 
-                let type = m[1];  // image, header, or bold
-                let value = m[2]; // The content/URL
+                let type = m[1];
+                let value = m[2];
                 let el;
         
                 if (type === "image") {
@@ -48,7 +42,7 @@ setTimeout(async () => {
                     el.src = value.trim();
                     el.style.width = "100%";
                     el.style.display = "block";
-                    el.style.marginBottom = "10px";
+                    el.style.margin = "10px 0";
                 } else if (type === "header") {
                     el = document.createElement("h1");
                     el.textContent = value;
@@ -58,13 +52,11 @@ setTimeout(async () => {
                 }
         
                 if (el) pg.appendChild(el);
-                
-                // Move the pointer forward
                 last = reg.lastIndex;
             }
             
-            // 3. Append any remaining text after the last tag
+            // Add the final chunk of text (this is what was "cutting off")
             pg.append(raw.substring(last));
-        };                      
+        };                            
     }
 }, 500);
