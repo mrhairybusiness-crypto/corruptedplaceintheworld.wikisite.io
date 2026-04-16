@@ -20,27 +20,30 @@ setTimeout(async () => {
         
         b.onclick = () => {
             pg.style.visibility = "visible";
-            pg.textContent = ""; 
+            pg.innerHTML = ""; // Clear existing content
+        
+            // 1. Get the raw text safely
+            let fullContent = String(table[k]);
+            let raw = fullContent.includes(",") ? fullContent.split(",")[1] : fullContent;
             
-            // Grabs the content from your table array
-            let raw = String(table[k]).split(",")[1] || "";
-            
-            // Updated Regex to match ((type value))
+            console.log("Processing text:", raw); // DEBUG: Check this in F12 console
+        
+            // 2. Updated Regex for ((type value))
+            // Matches ((image url)), ((header text)), or ((bold text))
             let reg = /\(\((image|header|bold)\s(.+?)\)\)/g;
             let last = 0, m;
-            
+        
             while ((m = reg.exec(raw)) !== null) {
-                // 1. Append plain text found before the tag
+                // Append text found BEFORE the tag
                 pg.append(raw.substring(last, m.index));
-                
-                const type = m[1];
-                const value = m[2];
+        
+                const type = m[1];  // image, header, or bold
+                const value = m[2]; // The content inside
                 let el;
         
-                // 2. Handle the specific tag types
                 if (type === "image") {
                     el = document.createElement("img");
-                    el.src = value;
+                    el.src = value.trim();
                     el.style.width = "100%";
                     el.style.display = "block";
                 } else if (type === "header") {
@@ -55,9 +58,8 @@ setTimeout(async () => {
                 last = reg.lastIndex;
             }
             
-            // 3. Append any remaining text after the last tag
+            // 3. Append any text found AFTER the last tag
             pg.append(raw.substring(last));
-        };             
+        };                   
     }
 }, 500);
-
