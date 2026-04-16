@@ -22,6 +22,11 @@ setTimeout(async () => {
             pg.style.visibility = "visible";
             pg.innerHTML = ""; // Clear the page
             
+            // --- FIX FOR CUT OFF ---
+            pg.style.height = "auto";       // Let it grow as long as the text
+            pg.style.overflow = "visible";  // Ensure nothing is hidden
+            // ------------------------
+
             // 1. Get the data. This assumes "ID,Content" format.
             let fullContent = String(table[k]);
             let raw = fullContent.includes(",") ? fullContent.split(",")[1] : fullContent;
